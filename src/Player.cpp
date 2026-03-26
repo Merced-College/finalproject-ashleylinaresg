@@ -1,3 +1,7 @@
+/* 
+Author: Ashley Linares Garcia
+Class: Player
+*/
 #include <iostream>
 #include "Player.h"
 using namespace std;
