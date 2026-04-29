@@ -1,57 +1,73 @@
 /*
-Author: Ashley Linares Garcia
-Class: Enemy
+Author: Ashley G.
+Course: CPSC-25-12703
+
+File: Enemy.cpp
+
+Description:
+This file defines the functions from the Enemy class.
+Enemies are used in the battle system and can attack the player.
 */
+
 #include "Enemy.h"
 
-// Default enemy values
-Enemy::Enemy() : name("Unknown Enemy"), health(0), damage(0), defeated(false) {}
+// Default enemy starts with simple values
+Enemy::Enemy()
+{
+    name = "Unknown Enemy";
+    health = 0;
+    damage = 0;
+    defeated = false;
+}
 
-// Custom constructor
+// Creates an enemy with custom stats
 Enemy::Enemy(string name, int health, int damage)
-    : name(name), health(health), damage(damage), defeated(false) {}
+{
+    this->name = name;
+    this->health = health;
+    this->damage = damage;
+    defeated = false;
+}
 
-// Return the enemy's name
-string Enemy::getName() const {
+// Returns the enemy's name
+string Enemy::getName() const
+{
     return name;
 }
 
-// Return the enemy's current health
-int Enemy::getHealth() const {
+// Returns the enemy's current health
+int Enemy::getHealth() const
+{
     return health;
 }
 
-// Return the amount of damage the enemy can do
-int Enemy::getDamage() const {
+// Returns how much damage the enemy does
+int Enemy::getDamage() const
+{
     return damage;
 }
 
-// Check if the enemy has been defeated
-bool Enemy::isDefeated() const {
+// Tells us if the enemy has already been defeated
+bool Enemy::isDefeated() const
+{
     return defeated;
 }
 
-// Reduce the enemy's health by a given amount
-void Enemy::takeDamage(int amount) {
+// Lowers enemy health when the player attacks
+void Enemy::takeDamage(int amount)
+{
     health -= amount;
 
-    // Prevent health from going below 0
-    if (health < 0) {
+    // If health reaches 0, the enemy is defeated
+    if (health <= 0)
+    {
         health = 0;
-    }
-
-    // If health reaches 0, mark enemy as defeated
-    if (health == 0) {
         defeated = true;
     }
 }
 
-// Return how much damage the enemy does when attacking
-int Enemy::attack() const {
+// Returns the enemy damage amount
+int Enemy::attack() const
+{
     return damage;
-}
-
-// Manually change defeated status if needed
-void Enemy::setDefeated(bool status) {
-    defeated = status;
 }
