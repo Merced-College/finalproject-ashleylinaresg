@@ -1,44 +1,39 @@
-/* 
-Author: Ashley Linares Garcia
-Class: Player
-Description: Manages the player stats, health, and inventory for the RPG
-*/
+/*
+Author: Brenda Romero and Ashley G.
+Course: CPSC-25-12703
 
+File: Player.h
+*/
 #ifndef PLAYER_H
 #define PLAYER_H
 
 #include <string>
 #include <vector>
-#include <iostream>
-using namespace std;
 
 class Player {
 private:
-    string name;
+    std::string name;
     int health;
-    vector<string> inventory;
-    int score;
+    int x, y; // To track position on the GameMap
+    std::vector<std::string> inventory;
 
 public:
-    // Default constructor
-    Player();
+    // Constructor
+    Player(std::string playerName = "Hero", int startingHealth = 100);
 
-    // Constructor with player name and starting health
-    Player(string name, int health);
+    // Getters and Setters
+    std::string getName() const { return name; }
+    int getHealth() const { return health; }
+    void setHealth(int h) { health = h; }
 
-    // Setters and getters
-    void setName(const string& newName);
-    string getName() const;
-    int getHealth() const;
-    int getScore() const;
-
-    // Player actions
+    // Game Actions
+    void move(int dx, int dy);
     void takeDamage(int damage);
-    void heal(int amount);
-    void addItem(const string& item);
-    bool hasItem(const string& item) const;
-    void showInventory() const;
-    void addScore(int points);
+    void addItem(std::string item);
+    void showStatus();
+
+    // Check if player is still alive
+    bool isAlive() const { return health > 0; }
 };
 
 #endif

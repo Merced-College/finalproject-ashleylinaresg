@@ -1,85 +1,104 @@
-/* 
-Author: Ashley Linares Garcia
-Class: Player
+/*
+Author: Brenda Romero
+Course: CPSC-25-12703
+
+File: Player.cpp
+
+Description:
+This file defines the functions from the Player class.
+The Player class keeps track of the player's name, health,
+and score while they move through the castle.
 */
-#include <iostream>
+
 #include "Player.h"
-using namespace std;
 
-// Default player starts with a basic name, 100 health, and 0 score
-Player::Player() : name("Player"), health(100), score(0) {}
-
-// Custom constructor
-Player::Player(string name, int health) : name(name), health(health), score(0) {}
-
-// Change the player's name
-void Player::setName(const string& newName) {
-    name = newName;
+// Default player starts with basic values
+Player::Player()
+{
+    name = "Player";
+    health = 100;
+    score = 0;
 }
 
-// Return the player's name
-string Player::getName() const {
+// Creates a player with a custom name and health
+Player::Player(string name, int health)
+{
+    this->name = name;
+    this->health = health;
+    score = 0;
+}
+
+// Updates the player's name
+void Player::setName(string name)
+{
+    this->name = name;
+}
+
+// Updates health and makes sure it does not go below 0
+void Player::setHealth(int health)
+{
+    this->health = health;
+
+    if (this->health < 0)
+    {
+        this->health = 0;
+    }
+}
+
+// Updates score and makes sure it does not go below 0
+void Player::setScore(int score)
+{
+    this->score = score;
+
+    if (this->score < 0)
+    {
+        this->score = 0;
+    }
+}
+
+// Returns the player's name
+string Player::getName() const
+{
     return name;
 }
 
-// Return the player's current health
-int Player::getHealth() const {
+// Returns the player's current health
+int Player::getHealth() const
+{
     return health;
 }
 
-// Return the player's current score
-int Player::getScore() const {
+// Returns the player's current score
+int Player::getScore() const
+{
     return score;
 }
 
-// Subtract damage from the player's health
-void Player::takeDamage(int damage) {
+// Subtracts health when the player takes damage
+void Player::takeDamage(int damage)
+{
     health -= damage;
 
-    // Prevent health from going below 0
-    if (health < 0) {
+    if (health < 0)
+    {
         health = 0;
     }
 }
 
-// Heal the player by a certain amount
-void Player::heal(int amount) {
+// Adds health back to the player
+void Player::heal(int amount)
+{
     health += amount;
-    if (health > 100) { //assuming max health is 100
-        health =100;
+
+    // Keeps the player's health from going over 100
+    if (health > 100)
+    {
+        health = 100;
     }
 }
 
-// Add an item to the player's inventory
-void Player::addItem(const string& item) {
-    inventory.push_back(item);
-}
-
-// Check if the player already has an item
-bool Player::hasItem(const string& item) const {
-    for (const auto& currentItem : inventory) {
-        if (currentItem == item) {
-            return true;
-        }
-    }
-    return false;
-}
-
-// Show all items currently in the inventory
-void Player::showInventory() const {
-    cout << "\nInventory:\n";
-
-    if (inventory.empty()) {
-        cout << "Your inventory is empty.\n";
-        return;
-    }
-
-    for (const auto& item : inventory) {
-        cout << "- " << item << endl;
-    }
-}
-
-// Add points to the player's score
-void Player::addScore(int points) {
+// Adds points to the player's score
+void Player::addScore(int points)
+{
     score += points;
 }
