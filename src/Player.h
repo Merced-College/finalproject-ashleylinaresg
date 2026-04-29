@@ -21,12 +21,15 @@ private:
 public:
     // Constructor
     Player(std::string playerName = "Hero", int startingHealth = 100);
+    
+    void setScore(int s);
 
     // Getters and Setters
     std::string getName() const { return name; }
     int getHealth() const { return health; }
     void setHealth(int h) { health = h; }
-
+    int getScore() const { return score; }
+    
     // Game Actions
     void move(int dx, int dy);
     void takeDamage(int damage);

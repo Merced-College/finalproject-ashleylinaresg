@@ -11,21 +11,17 @@ and score while they move through the castle.
 */
 
 #include "Player.h"
+#include <iostream>
+#include <string>
 
-// Default player starts with basic values
-Player::Player()
-{
-    name = "Player";
-    health = 100;
-    score = 0;
-}
+using namespace std;
 
 // Creates a player with a custom name and health
 Player::Player(string name, int health)
 {
     this->name = name;
     this->health = health;
-    score = 0;
+    this->score = 0; // Added this-> to be consistent
 }
 
 // Updates the player's name
