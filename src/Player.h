@@ -14,6 +14,7 @@ class Player {
 private:
     std::string name;
     int health;
+    int score;
     int x, y; // To track position on the GameMap
     std::vector<std::string> inventory;
 
